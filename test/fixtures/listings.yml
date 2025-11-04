@@ -4,10 +4,10 @@ one:
   resource_name: MyString
   quantity: 1
   price: 1
-  owner: MyString
+  owner: one
 
 two:
   resource_name: MyString
   quantity: 1
   price: 1
-  owner: MyString
+  owner: two

@@ -14,7 +14,7 @@ class ListingsTest < ApplicationSystemTestCase
     visit listings_url
     click_on "New listing"
 
-    fill_in "Owner", with: @listing.owner
+    fill_in "Owner", with: @listing.owner_id
     fill_in "Price", with: @listing.price
     fill_in "Quantity", with: @listing.quantity
     fill_in "Resource name", with: @listing.resource_name
@@ -28,7 +28,7 @@ class ListingsTest < ApplicationSystemTestCase
     visit listing_url(@listing)
     click_on "Edit this listing", match: :first
 
-    fill_in "Owner", with: @listing.owner
+    fill_in "Owner", with: @listing.owner_id
     fill_in "Price", with: @listing.price
     fill_in "Quantity", with: @listing.quantity
     fill_in "Resource name", with: @listing.resource_name

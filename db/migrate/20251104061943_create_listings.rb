@@ -4,7 +4,7 @@ class CreateListings < ActiveRecord::Migration[8.0]
       t.string :resource_name
       t.integer :quantity
       t.integer :price
-      t.string :owner
+      t.belongs_to :user, null: false, foreign_key: true
 
       t.timestamps
     end

@@ -65,6 +65,6 @@ class ListingsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def listing_params
-      params.expect(listing: [ :resource_name, :quantity, :price, :owner ])
+      params.expect(listing: [ :resource_name, :quantity, :price, :owner_id ])
     end
 end

@@ -10,14 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_10_26_025607) do
+ActiveRecord::Schema[8.0].define(version: 2025_11_04_061943) do
   create_table "listings", force: :cascade do |t|
     t.string "resource_name"
     t.integer "quantity"
     t.integer "price"
-    t.string "owner"
+    t.integer "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_listings_on_user_id"
   end
 
   create_table "resources", force: :cascade do |t|
@@ -43,5 +44,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_10_26_025607) do
     t.index ["email_address"], name: "index_users_on_email_address", unique: true
   end
 
+  add_foreign_key "listings", "users"
   add_foreign_key "sessions", "users"
 end
