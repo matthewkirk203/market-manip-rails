@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_11_05_021816) do
+ActiveRecord::Schema[8.0].define(version: 2025_11_06_062233) do
   create_table "listings", force: :cascade do |t|
     t.string "resource_name"
     t.integer "quantity"
@@ -19,6 +19,12 @@ ActiveRecord::Schema[8.0].define(version: 2025_11_05_021816) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_listings_on_user_id"
+  end
+
+  create_table "resource_types", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "resources", force: :cascade do |t|
@@ -36,6 +42,17 @@ ActiveRecord::Schema[8.0].define(version: 2025_11_05_021816) do
     t.index ["user_id"], name: "index_sessions_on_user_id"
   end
 
+  create_table "user_resources", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "resource_type_id", null: false
+    t.integer "amount"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["resource_type_id"], name: "index_user_resources_on_resource_type_id"
+    t.index ["user_id", "resource_type_id"], name: "index_user_resources_on_user_id_and_resource_type_id", unique: true
+    t.index ["user_id"], name: "index_user_resources_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email_address", null: false
     t.string "password_digest", null: false
@@ -47,4 +64,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_11_05_021816) do
 
   add_foreign_key "listings", "users"
   add_foreign_key "sessions", "users"
+  add_foreign_key "user_resources", "resource_types"
+  add_foreign_key "user_resources", "users"
 end
