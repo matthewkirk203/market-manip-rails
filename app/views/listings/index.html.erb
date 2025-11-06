@@ -17,7 +17,7 @@
     <tbody>
       <% @listings.each do |listing| %>
         <tr>
-          <td><%=link_to listing.resource_name, listing%></td>
+          <td><%=link_to listing.resource_type.name, listing%></td>
           <td><%=listing.quantity%></td>
           <td><%=listing.price%></td>
           <td><%=listing.user.name%></td>
