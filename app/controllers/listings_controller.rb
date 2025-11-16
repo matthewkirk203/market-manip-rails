@@ -4,6 +4,7 @@ class ListingsController < ApplicationController
   # GET /listings or /listings.json
   def index
     @listings = Listing.all
+    @userResources = UserResource.where(user_id: Current.user.id)
   end
 
   # GET /listings/1 or /listings/1.json

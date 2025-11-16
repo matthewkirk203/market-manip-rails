@@ -4,6 +4,13 @@
 
 <h1>Listings</h1>
 
+<div id="myResources">
+My Resources
+  <% @userResources.each do |res| %>
+    <p> <%= res.resource_type.name %>: <%= res.amount %> </p>
+  <% end %>
+</div>
+
 <div id="listings">
   <table>
     <thead>
