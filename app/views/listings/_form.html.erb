@@ -12,8 +12,8 @@
   <% end %>
 
   <div>
-    <%= form.label :resource_name, style: "display: block" %>
-    <%= form.text_field :resource_name %>
+    <%= form.label :resource_type_id, style: "display: block" %>
+    <%= form.collection_select :resource_type_id, ResourceType.order(:name), :id, :name %>
   </div>
 
   <div>
