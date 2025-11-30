@@ -4,12 +4,7 @@
 
 <h1>Listings</h1>
 
-<div id="myResources">
-<h2>My Resources</h2>
-  <% @userResources.each do |res| %>
-    <p> <%= res.resource_type.name %>: <%= res.amount %> </p>
-  <% end %>
-</div>
+<%= render "my_resources" %>
 
 <h2>Active Listings</h2>
 <div id="listings">

@@ -1,0 +1,6 @@
+<div id="myResources">
+<h2>My Resources</h2>
+  <% @userResources.each do |res| %>
+    <p> <%= res.resource_type.name %>: <%= res.amount %> </p>
+  <% end %>
+</div>

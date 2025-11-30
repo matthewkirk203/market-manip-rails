@@ -1,10 +1,10 @@
 class ListingsController < ApplicationController
   before_action :set_listing, only: %i[ show edit update destroy ]
+  before_action :set_user_resources
 
   # GET /listings or /listings.json
   def index
     @listings = Listing.all
-    @userResources = UserResource.where(user_id: Current.user.id)
   end
 
   # GET /listings/1 or /listings/1.json
@@ -65,6 +65,10 @@ class ListingsController < ApplicationController
       @listing = Listing.find(params.expect(:id))
     end
 
+    def set_user_resources
+      @userResources = UserResource.where(user_id: Current.user.id)
+    end
+    
     # Only allow a list of trusted parameters through.
     def listing_params
       params.expect(listing: [ :resource_type_id, :quantity, :price, :user_id ])
