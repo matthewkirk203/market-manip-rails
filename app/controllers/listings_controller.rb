@@ -22,11 +22,11 @@ class ListingsController < ApplicationController
 
   # POST /listings or /listings.json
   def create
-    @listing = Listing.new(listing_params)
-    @listing.user_id = Current.user.id
-
+    # @listing = Listing.new(listing_params)
+    # @listing.user_id = Current.user.id
+    @listing = ListingCreation.new.create_listing(listing_params)
     respond_to do |format|
-      if @listing.save
+      if @listing.valid?
         format.html { redirect_to @listing, notice: "Listing was successfully created." }
         format.json { render :show, status: :created, location: @listing }
       else
@@ -68,7 +68,7 @@ class ListingsController < ApplicationController
     def set_user_resources
       @userResources = UserResource.where(user_id: Current.user.id)
     end
-    
+
     # Only allow a list of trusted parameters through.
     def listing_params
       params.expect(listing: [ :resource_type_id, :quantity, :price, :user_id ])
