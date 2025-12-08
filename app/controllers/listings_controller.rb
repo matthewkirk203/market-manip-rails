@@ -24,9 +24,10 @@ class ListingsController < ApplicationController
   def create
     # @listing = Listing.new(listing_params)
     # @listing.user_id = Current.user.id
-    @listing = ListingCreation.new.create_listing(listing_params)
+    @listing, @success = ListingCreation.new.create_listing(listing_params)
+    # binding.pry
     respond_to do |format|
-      if @listing.valid?
+      if @success
         format.html { redirect_to @listing, notice: "Listing was successfully created." }
         format.json { render :show, status: :created, location: @listing }
       else
