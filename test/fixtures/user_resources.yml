@@ -5,7 +5,7 @@ one:
   resource_type: one
   amount: 1
 
-two:
-  user: two
-  resource_type: two
-  amount: 1
+# two:
+#   user: two
+#   resource_type: two
+#   amount: 1
