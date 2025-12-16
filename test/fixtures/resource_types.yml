@@ -3,5 +3,5 @@
 one:
   name: TestResourceType
 
-# two:
-#   name: MyString
+two:
+  name: EmptyResource
