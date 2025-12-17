@@ -10,14 +10,17 @@ class ListingsCreationTest < ActiveSupport::TestCase
     # login_as users(:one)
     # binding.pry
     @listing = listings(:one)
-    listing, result = ListingCreation.new.create_listing(users(:one).id, { price: @listing.price, quantity: @listing.quantity, resource_type_id: @listing.resource_type_id } )
-    # assert :success
-    assert listing
-    # Assert that it succeeded
-    assert_equal true, result
+    # Assert that when we run this, the users resources decrease by the amount in the listing
+    assert_difference("users(:one).user_resources.where(resource_type_id: @listing.resource_type_id).pick(:amount)", -@listing.quantity) do
+      listing, result = ListingCreation.new.create_listing(users(:one).id, { price: @listing.price, quantity: @listing.quantity, resource_type_id: @listing.resource_type_id } )
+      # assert :success
+      assert listing
+      # Assert that it succeeded
+      assert_equal true, result
+    end
     # Assert that the amount the user has went from 1 -> 0.
     # TODO: Generalize this so it doesn't have to be hardcoded to 0
-    assert_equal users(:one).user_resources.where(resource_type_id: @listing.resource_type_id).pick(:amount), 0
+    # assert_equal users(:one).user_resources.where(resource_type_id: @listing.resource_type_id).pick(:amount), 0
   end
 
   test "create listing without enough resources" do
