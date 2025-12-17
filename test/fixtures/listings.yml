@@ -6,8 +6,8 @@ one:
   user: one
   resource_type: one
 
-# two:
-#   resource_name: MyString
-#   quantity: 1
-#   price: 1
-#   user: two
+two:
+  quantity: 1
+  price: 1
+  user: one
+  resource_type: two

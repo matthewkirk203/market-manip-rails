@@ -24,7 +24,7 @@ class ListingsController < ApplicationController
   def create
     # @listing = Listing.new(listing_params)
     # @listing.user_id = Current.user.id
-    @listing, @success = ListingCreation.new.create_listing(listing_params)
+    @listing, @success = ListingCreation.new.create_listing(Current.user.id, listing_params)
     # binding.pry
     respond_to do |format|
       if @success
@@ -72,6 +72,6 @@ class ListingsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def listing_params
-      params.expect(listing: [ :resource_type_id, :quantity, :price, :user_id ])
+      params.expect(listing: [ :resource_type_id, :quantity, :price ])
     end
 end
