@@ -29,4 +29,11 @@ class ListingsCreationTest < ActiveSupport::TestCase
     # assert :success
     assert_equal false, result, "resources not correctly checked"
   end
+
+  test "destroy listing returns resources" do
+    @listing = listings(:one)
+    assert_difference("users(:one).user_resources.where(resource_type_id: @listing.resource_type_id).pick(:amount)", +@listing.quantity) do
+      ListingCreation.new.destroy_listing(@listing)
+    end
+  end
 end
