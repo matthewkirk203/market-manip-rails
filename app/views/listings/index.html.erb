@@ -23,7 +23,10 @@
           <td><%=link_to listing.resource_type.name, listing%></td>
           <td><%=listing.quantity%></td>
           <td><%=listing.price%></td>
-          <td><%=listing.user.name%></td>
+          <td>
+            <%=listing.user.name%>
+            <%= " (you)" if listing.user_id == Current.user.id %>
+          </td>
         </tr>
       <% end %>
     </tbody>

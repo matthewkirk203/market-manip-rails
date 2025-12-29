@@ -17,6 +17,7 @@
   <p>
     <strong>Owner:</strong>
     <%= listing.user.name %>
+    <%= " (you)" if listing.user_id == Current.user.id %>
   </p>
 
 </div>
