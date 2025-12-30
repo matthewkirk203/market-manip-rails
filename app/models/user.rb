@@ -6,4 +6,10 @@ class User < ApplicationRecord
   has_many :resource_types, through: :user_resources
 
   normalizes :email_address, with: ->(e) { e.strip.downcase }
+
+  def get_user_resources_for_type(resource_type_id)
+    user_resources.find_or_initialize_by(resource_type_id: resource_type_id) do |res|
+      res.amount = 0
+    end
+  end
 end
