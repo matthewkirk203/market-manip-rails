@@ -7,6 +7,8 @@ class User < ApplicationRecord
 
   normalizes :email_address, with: ->(e) { e.strip.downcase }
 
+  enum :role, { basic: 0, admin: 1 }
+
   def get_user_resources_for_type(resource_type_id)
     user_resources.find_or_initialize_by(resource_type_id: resource_type_id) do |res|
       res.amount = 0
